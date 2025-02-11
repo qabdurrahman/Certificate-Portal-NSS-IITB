@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cycle Rally - Certificate Generation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('flareback.jpg'); /* Replace with image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            letter-spacing: 3px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .option-card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .option-card img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .option-content {
+            text-align: left;
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .option-content h2 {
+            margin: 0;
+            font-size: 20px;
+            color: #34495e;
+        }
+
+        .option-content p {
+            margin: 5px 0 0;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .option-card.blood {
+            border-left: 5px solid #e74c3c;
+        }
+
+        .option-card.food {
+            border-left: 5px solid #27ae60;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            .option-content h2 {
+                font-size: 18px;
+            }
+
+            .option-card {
+                padding: 15px;
+            }
+
+            .option-card img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FLARE</h1>
+        <div class="options">
+            <!-- Blood Donation Card -->
+            <div class="option-card blood" onclick="window.location.href='river-cleanup/index.html'">
+                <img src="river_cleanup.jpg" alt="River-Cleanup"> <!-- icon -->
+                <div class="option-content">
+                    <h2>River-Cleanup</h2>
+                    <p>Generate your certificate for River-Cleanup event participation.</p>
+                </div>
+            </div>
+
+            <!-- Food Donation Card -->
+            <div class="option-card food" onclick="window.location.href='food-donation/index.html'">
+                <img src="food-donation/food_donation.jpg" alt="Food Donation"> <!-- icon -->
+                <div class="option-content">
+                    <h2>Food Donation</h2>
+                    <p>Generate your certificate for food donation event participation.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

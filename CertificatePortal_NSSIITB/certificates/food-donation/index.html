@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate Generator</title>
+  <meta property="og:url" content="https://nss.gymkhana.iitb.ac.in/certificate/index.html">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,800;1,500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: url("food_donation.jpg") no-repeat center center fixed;
+      background-size: cover;
+      font-family: "Roboto", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+
+    .generate-page {
+      width: 70%;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+
+    }
+
+    .form {
+        position: relative;
+        z-index: 1;
+        background: linear-gradient(45deg, rgba(232, 236, 238, 0.5), rgba(151, 154, 156, 0.5), rgba(85, 86, 87, 0.5));
+        /* Use rgba() to specify the background color with transparency */
+        border-radius: 30px;
+        border: 3px solid grey;
+        width: 40%;
+        padding: 45px;
+        text-align: center;
+        box-shadow: 0 0 20px 0 rgba(5, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+    
+    .form input,select {
+      outline: 0;
+      background: #f2f2f2;
+      width: 100%;
+      border-radius: 15px;
+      margin: 0 0 15px;
+      padding: 15px;
+      box-sizing: border-box;
+      font-size: 14px;
+      color: #484a49;
+      ;
+      font-family: 'Poppins', sans-serif;
+      border: 2px solid grey;
+    }
+
+    .button {
+      font-family: "Roboto", sans-serif;
+      text-transform: uppercase;
+      outline: 0;
+      background-color: #dce6e5;
+      color: #000;
+      border: none;
+      padding: 15px;
+      width: 100%;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: rgb(24, 200, 83);
+    }
+
+    .generate-page .form h1 {
+      color: #0e0d0d;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .generate-page .form label {
+      color: #000100;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    @media only screen and (max-width: 890px) {
+      
+
+      .form {
+        width: 55%;
+      }
+    }
+    @media only screen and (max-width: 650px) {
+      
+
+      .form {
+        width: 65%;
+      }
+    }
+    @media only screen and (max-width: 550px) {
+      
+
+      .form {
+        width: 75%;
+      }
+    }
+    @media only screen and (max-width: 285px) {
+      
+
+      .form {
+        width: 90%;
+
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="generate-page">
+    <div class="form">
+      <div class="details">
+        <div class="login-header">
+          <h1>Certificate Generator</h1>
+        </div>
+      </div>
+      
+      <!-- <form class="login-form" method="POST" action="generate_certificate.php">
+        <label for="selectedName">Select Name:</label>
+        <select id="selectedName" name="selectedName" required>
+          <option value="" disabled selected>Select a name</option>
+        </select><br> -->
+        
+        <form class="login-form" method="POST">
+          <label for="name">Select Name:</label>
+          <select id="name" name="name" required>
+              <option value="" disabled selected>Select a name</option>
+          </select><br>
+      
+          <label for="Roll_number">Roll Number:</label>
+          <input type="text" id="Roll_number" name="Roll_number" placeholder="Enter Roll Number" required><br>
+      
+      
+          <input class="button" type="submit" value="Generate Certificate" onclick="downloadJpgFromPhp('fooddonation.php')">
+      </form>
+    </div>
+  </div>
+  <script>
+    // Function to populate the dropdown with options
+    function populateDropdown() {
+      var dropdown = document.getElementById('name');
+
+      // Load the dataset from data.json
+      fetch('food_data.json')
+
+      
+        .then(response => response.json())
+        .then(data => {
+          for (var i = 0; i < data.length; i++) {
+            var option = document.createElement('option');
+            option.value = data[i].Name;
+            option.text = data[i].Name;
+            dropdown.add(option);
+          }
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    }
+
+    // Call the function to populate the dropdown when the page loads
+    window.onload = populateDropdown;
+
+    function downloadJpgFromPhp(phpURL , fileName = 'Food_donation_Certificate.jpg') {
+  fetch(phpURL)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.blob(); // Convert the response to a blob
+    })
+    .then(blob => {
+      const url = URL.createObjectURL(blob); // Create a temporary object URL
+
+      // Create a temporary <a> element to trigger the download
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName; // Set the downloaded file name
+      document.body.appendChild(a);
+      a.click(); // Trigger the download
+
+      // Clean up the temporary URL and <a> element
+      URL.revokeObjectURL(url);
+      a.remove();
+    })
+    .catch(error => console.error('Error downloading the image:', error));
+}
+
+// Call the function with the PHP endpoint URL
+  </script>
+</body>
+
+</html>
